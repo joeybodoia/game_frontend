@@ -1,4 +1,61 @@
-h1,
-h2 {
-  color: blue;
+/*
+////////////////
+Nav Styling
+////////////////
+*/
+
+
+header {
+  text-align: center;
 }
+
+
+header nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+header nav a {
+  text-decoration: none;
+  color: green
+}
+
+header nav div {
+  font-size: 3vw;
+  background-color: gray;
+  color: white;
+  width: 16vw;
+  border: 3px solid purple;
+  border-radius: 7px;
+  transition: background-color .2s, color .2s;
+  padding: 0.5vw;
+}
+
+header nav div:hover {
+  background-color: beige;
+  color: black;
+}
+
+
+
+/* 
+///////////////
+Auth styling
+///////////////
+ */
+
+ .auth form {
+
+  padding: 4vw;
+
+ }
+ .auth form input {
+   background-color: gray;
+   color: white;
+   padding: 1vw;
+   border: 3px solid purple;
+   border-radius: 7px;
+   display: block;
+   margin: 2vw auto;
+   text-align: center;
+ }

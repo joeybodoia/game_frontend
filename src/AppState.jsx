@@ -6,7 +6,9 @@ import React, { useReducer, useContext } from "react"
 ///////////////////////////
 
 const initialState = {
-    url: "http://jb-rails-game-backend.herokuapp.com"
+    url: "http://jb-rails-game-backend.herokuapp.com",
+    token: null,
+    username: null
 }
 
 
@@ -16,10 +18,16 @@ const initialState = {
 
 // action = {type:"string", payload: }
 const reducer = (state, action) => {
+    let newState
 
     switch(action.type){
+        case "auth":
+            newState = { ...state, ...action.payload}
+            return newState
+            break
         default:
             return state
+            break
     }
 }
 
