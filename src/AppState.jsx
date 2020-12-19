@@ -8,7 +8,20 @@ import React, { useReducer, useContext } from "react"
 const initialState = {
     url: "http://jb-rails-game-backend.herokuapp.com",
     token: null,
-    username: null
+    username: null, 
+    profile: null,
+    new: {
+        firstName: "",
+        lastName: "",
+        profilePicture: ""
+    },
+    edit:{
+        id:0,
+        firstName: "",
+        lastName: "",
+        profilePicture: ""
+    }
+
 }
 
 
@@ -28,6 +41,11 @@ const reducer = (state, action) => {
         case "logout":
             newState = {...state, token:null, username:null}
             window.localStorage.removeItem("auth")
+            return newState
+            break
+        case "getProfile":
+            console.log(action.payload)
+            newState = {...state, profile: action.payload}
             return newState
             break
         default:
