@@ -11,8 +11,7 @@ const Nav = (props) => {
         <header>
             <h1>App title</h1>
             <nav>
-                <Link to="/"><div>Home</div></Link>
-                {!state.token ? (<><Link to="/auth/signup"><div>Sign up</div></Link>
+                {!state.token ? (<><Link to="/"><div>Home</div></Link><Link to="/auth/signup"><div>Sign up</div></Link>
                 <Link to="/auth/login"><div>Log in</div></Link></>) : null}
                 {state.token ? <div onClick={() => {
                     dispatch({type: "logout"})

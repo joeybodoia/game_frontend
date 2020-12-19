@@ -44,8 +44,11 @@ const reducer = (state, action) => {
             return newState
             break
         case "getProfile":
-            console.log(action.payload)
             newState = {...state, profile: action.payload}
+            return newState
+            break
+        case "select":
+            newState = {...state, edit: action.payload}
             return newState
             break
         default:

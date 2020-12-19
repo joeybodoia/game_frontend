@@ -42,6 +42,20 @@ const Dashboard = (props) => {
             <img src={profile.profilePicture} style={{"height":"20vw", "width":"20vw", "border":"3px solid red", "border-radius": "25px"}}></img>
             <h2>first name: {profile.firstName}</h2>
             <h2>last name: {profile.lastName}</h2>
+            <button onClick={()=> {
+                dispatch({type: "select", payload: profile})
+                props.history.push("/dashboard/edit")
+            }}>Edit Profile</button>
+            <button onClick={()=> {
+                fetch(url + "/profiles/" + profile.id, {
+                    method: "delete",
+                    headers: {
+                        Authorization: "bearer " + token 
+                    }
+                })
+                .then(() => getProfile())
+            }}>Delete Profile</button>
+            <Route path="/dashboard/:action" render={(rp) => <Form {...rp} getProfile={getProfile}/>}/>
         </div>
         </div>
     )}
