@@ -29,7 +29,10 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@ion-phaser/core": "^1.2.3",
+    "@ion-phaser/react": "^1.2.2",
     "cross-env": "^7.0.2",
+    "phaser": "^3.50.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.2.0",

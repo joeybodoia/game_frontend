@@ -59,3 +59,41 @@ Auth styling
    margin: 2vw auto;
    text-align: center;
  }
+
+
+
+ .tetris {
+   background-color: black;
+   display: flex;
+   color: white;
+   height: 120vw;
+   width: 90%;
+   margin-left: auto;
+   margin-right: auto;
+   display: flex;
+   justify-content: center;
+ }
+
+
+
+ .grid {
+   width: 48vw;
+   height: 100vw;
+   background-color: purple;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   margin-top: 4vw;
+   align-content: flex-start;
+   padding-top: 2vw;
+   /* flex-basis: 60%; */
+ }
+
+ .grid div {
+   height: 4vw;
+   width: 4vw;
+ }
+
+ .tetrominoes {
+   background-color: blue
+ }
