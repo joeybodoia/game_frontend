@@ -5,13 +5,14 @@ import SnakeFood from "./snakeFood.jsx"
 const Game = (props) => {
 
 
-
+    // randomizes the snake food position
     const randomizeSnakeFood = () => {
         let x = Math.floor((Math.random()*97))
         let y = Math.floor((Math.random()*97))
         return [x,y]
     }
 
+    // Set initial state for the snake
     const snakeState = {
         snakeDots: [
             [0,0],
@@ -20,10 +21,12 @@ const Game = (props) => {
     }
     console.log("reset State")
 
+    // initial state for the direction of the snake
     const direction = {
         direction: "DOWN"
     }
 
+    // initial state for the snake food
     const snakeFoodState = {
         snakeFood: randomizeSnakeFood()
     }
@@ -35,6 +38,7 @@ const Game = (props) => {
     const [state, setState] = React.useState(snakeState)
     console.log("reset State")
 
+    // calls the snakePath function every .4 seconds
     React.useEffect(() => {
         setInterval(() => {
             snakePath()
@@ -48,6 +52,7 @@ const Game = (props) => {
     // }, [])
 
 
+    // listens for arrow keys, changing the direction state accordingly
     window.addEventListener('keydown', (event) => {
         if (event.keyCode == 37) {
             console.log("left")
@@ -73,6 +78,7 @@ const Game = (props) => {
     })
 
 
+    // function that deletes the snake tail and adds a new snake head in the direction the arrow keys point to
     const snakePath = () => {
         let dots = [...state.snakeDots]
         let finalDots = dots
