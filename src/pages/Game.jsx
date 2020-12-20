@@ -90,13 +90,16 @@ const Game = (props) => {
         
         // console.log("hello")
         if (directionState.direction == "LEFT") {
-            head = [head[0]-3, head[1]]
+            head2[0] -= 3
+            head2[1] = head[1]
             console.log("LEFT")
         } else if (directionState.direction == "UP") {
-            head = [head[0], head[1]-3]
+            head2[0] = head[0]
+            head2[1] -= 3
             console.log("UP")
         } else if (directionState.direction == "RIGHT") {
-            head = [head[0]+3, head[1]]
+            head2[0] += 3
+            head2[1] = head[1]
             console.log("RIGHT")
         } else if (directionState.direction == "DOWN") {
             console.log("before head = " + dots)
