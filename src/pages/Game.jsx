@@ -18,6 +18,7 @@ const Game = (props) => {
             [3,0]
         ]
     }
+    console.log("reset State")
 
     const direction = {
         direction: "DOWN"
@@ -32,6 +33,19 @@ const Game = (props) => {
     const [foodState, setFoodState] = React.useState(snakeFoodState)
 
     const [state, setState] = React.useState(snakeState)
+    console.log("reset State")
+
+    React.useEffect(() => {
+        setInterval(() => {
+            snakePath()
+        }, 400);
+    }, [])
+
+
+
+    // React.useEffect(()=> {
+    //     snakePath()
+    // }, [])
 
 
     window.addEventListener('keydown', (event) => {
@@ -59,24 +73,42 @@ const Game = (props) => {
     })
 
 
-    const moveSnake = () => {
+    const snakePath = () => {
         let dots = [...state.snakeDots]
-        let head = dots[dots.length-1]
-
+        let finalDots = dots
+        console.log("original finalDots =" + finalDots)
+        let head = finalDots[dots.length-1]
+        let head2 = [head[0],head[1]]
+        console.log("head2 =" + head2)
+        console.log("starting head =" + head)
+        
+        // console.log("hello")
         if (directionState.direction == "LEFT") {
             head = [head[0]-3, head[1]]
+            console.log("LEFT")
         } else if (directionState.direction == "UP") {
             head = [head[0], head[1]-3]
+            console.log("UP")
         } else if (directionState.direction == "RIGHT") {
             head = [head[0]+3, head[1]]
+            console.log("RIGHT")
         } else if (directionState.direction == "DOWN") {
-            head = [head[0], head[1]+3]
+            console.log("before head = " + dots)
+            head2[0] = head[0]
+            head2[1] += 3
+            console.log("head =" + head)
+            console.log("DOWN")
         }
-        dots.push(head)
-        dots.shift()
+        // console.log("goodbye")
+        console.log("before push = " + finalDots)
+        finalDots.push(head2)
+        console.log("push =" + finalDots)
+        finalDots.shift()
+        console.log("final dots =" + finalDots)
         setState({
-            snakeDots: dots
+            snakeDots: finalDots
         })
+        console.log(state)
     }
 
   
