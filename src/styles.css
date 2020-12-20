@@ -62,38 +62,53 @@ Auth styling
 
 
 
- .tetris {
-   background-color: black;
-   display: flex;
-   color: white;
-   height: 120vw;
-   width: 90%;
-   margin-left: auto;
-   margin-right: auto;
-   display: flex;
-   justify-content: center;
+ .gameContainer {
+  position: relative;
+  height: 60vw;
+  width: 60vw;
+  border: 2px solid black;
+  margin-left: auto;
+  margin-right: auto;
+ }
+
+
+ .snakeDot {
+   position: absolute;
+   width: 3%;
+   height: 3%;
+   background-color: green;
+   border: 1px solid gray;
+   z-index: 2;
+ }
+
+ .snakeFood {
+   position: absolute;
+   width: 3%;
+   height: 3%;
+   background-color: red;
+   border: 1px solid gray;
+   z-index: 1;
+
  }
 
 
 
- .grid {
-   width: 48vw;
-   height: 100vw;
-   background-color: purple;
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-   margin-top: 4vw;
-   align-content: flex-start;
-   padding-top: 2vw;
-   /* flex-basis: 60%; */
- }
 
- .grid div {
-   height: 4vw;
-   width: 4vw;
- }
+/* .gridContainer {
+  height: 100vw;
+  width: 100vw;
+  border: 2px solid green;
+  display: flex;
+  flex-wrap:wrap;
+  align-content: flex-start;
+}
 
- .tetrominoes {
-   background-color: blue
- }
+
+.gridDots {
+  height: 2%;
+  width: 2%;
+} */
+
+
+
+ 
