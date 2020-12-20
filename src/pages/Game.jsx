@@ -39,11 +39,20 @@ const Game = (props) => {
     console.log("reset State")
 
     // calls the snakePath function every .4 seconds
-    React.useEffect(() => {
-        setInterval(() => {
-            snakePath()
-        }, 400);
-    }, [])
+    // React.useEffect(() => {
+    //     snakePath()
+    //     if (state != snakeState) {
+    //         setInterval(() => {
+    //             snakePath()
+    //         }, 10000)
+    //         if (state == {snakeDots: [
+    //             [3,6],
+    //             [3,9]
+    //         ]}) {
+    //             break
+    //         }
+    //     } 
+    // }, [state])
 
 
 
@@ -54,6 +63,12 @@ const Game = (props) => {
 
     // listens for arrow keys, changing the direction state accordingly
     window.addEventListener('keydown', (event) => {
+        let dots = [...state.snakeDots]
+        let finalDots = dots
+        console.log("original finalDots =" + finalDots)
+        let head = finalDots[dots.length-1]
+        let head2 = [head[0],head[1]]
+
         if (event.keyCode == 37) {
             console.log("left")
             setDirectionState({
@@ -74,6 +89,16 @@ const Game = (props) => {
             setDirectionState({
                 direction: "DOWN"
             })
+            head2[0] = head[0]
+            head2[1] += 3
+            finalDots.push(head2)
+            console.log("push =" + finalDots)
+            finalDots.shift()
+            console.log("final dots =" + finalDots)
+            // setState({
+            //     snakeDots: finalDots
+            // })
+            console.log(state)
         }
     })
 
