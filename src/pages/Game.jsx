@@ -1,166 +1,104 @@
+
 import React from "react"
-import Snake from "./Snake.jsx"
-import SnakeFood from "./snakeFood.jsx"
+import { gameInterval } from "./GameInterval.jsx"
 
 const Game = (props) => {
 
 
-    // randomizes the snake food position
-    const randomizeSnakeFood = () => {
-        let x = Math.floor((Math.random()*97))
-        let y = Math.floor((Math.random()*97))
-        return [x,y]
+
+  const canvasRef = React.useRef(null)
+
+
+  const [snakeState, setSnakeState] = React.useState([
+                [20,7],
+                [20,8]
+            ])
+
+
+  const [foodState, setFoodState] = React.useState([8,3])
+  const [directionState, setDirectionState] = React.useState([1,0])
+  const [speedState, setSpeedState] = React.useState(null)
+  const [gameOver, setGameOver] = React.useState(false)
+
+  const startGame = () => {
+    setSnakeState([[20,7],[20,8]])
+    setFoodState([8,3])
+    setDirectionState([1,0])
+    setSpeedState(1000)
+    setGameOver(false)
+  }
+
+  const endGame = () => {
+    setSpeedState(null)
+    setGameOver(true)
+  }
+
+  // event listener to change the direction state when arrow keys are pushed
+  window.addEventListener('keydown', (event) => {
+
+    if (event.keyCode == 37) {
+        console.log("left")
+        setDirectionState([-1,0])
+    } else if (event.keyCode == 38) {
+        console.log("UP")
+        setDirectionState([0,-1])
+    } else if (event.keyCode == 39) {
+        console.log("right")
+        setDirectionState([1,0])
+    } else if (event.keyCode == 40) {
+        console.log("DOWN")
+        setDirectionState([0,1])
     }
+  })
 
-    // Set initial state for the snake
-    const snakeState = {
-        snakeDots: [
-            [0,0],
-            [3,0]
-        ]
+
+  // const checkOutofBounds = (snake) => {
+  //   if (snake )
+  // }
+
+  const runGame = () => {
+    const snakeStateCopy = JSON.parse(JSON.stringify(snakeState))
+    console.log("snake state =" + snakeStateCopy)
+    const newHead = [snakeStateCopy[1][0] + directionState[0], snakeStateCopy[1][1]+directionState[1]]
+    console.log("snake head =" + newHead)
+    snakeStateCopy.push(newHead)   //add the new head onto the snakeStateCopy
+    snakeStateCopy.shift()         //delete the tail from the snakeStateCopy
+    console.log(snakeStateCopy)
+    setSnakeState(snakeStateCopy)
+    console.log("snakeStateCopy[0]= " + snakeStateCopy[0])
+    if (snakeStateCopy[1][0] >= 28 || snakeStateCopy[1][1] >= 28 || snakeStateCopy[1][0] < 1 || snakeStateCopy[1][1] < 1) {
+      console.log("game over")
+      endGame()
     }
-    console.log("reset State")
-
-    // initial state for the direction of the snake
-    const direction = {
-        direction: "DOWN"
-    }
-
-    // initial state for the snake food
-    const snakeFoodState = {
-        snakeFood: randomizeSnakeFood()
-    }
-
-    const [directionState, setDirectionState] = React.useState(direction)
-
-    const [foodState, setFoodState] = React.useState(snakeFoodState)
-
-    const [state, setState] = React.useState(snakeState)
-    console.log("reset State")
-
-    // calls the snakePath function every .4 seconds
-    // React.useEffect(() => {
-    //     snakePath()
-    //     if (state != snakeState) {
-    //         setInterval(() => {
-    //             snakePath()
-    //         }, 10000)
-    //         if (state == {snakeDots: [
-    //             [3,6],
-    //             [3,9]
-    //         ]}) {
-    //             break
-    //         }
-    //     } 
-    // }, [state])
+  }
 
 
 
-    // React.useEffect(()=> {
-    //     snakePath()
-    // }, [])
 
 
-    // listens for arrow keys, changing the direction state accordingly
-    window.addEventListener('keydown', (event) => {
-        let dots = [...state.snakeDots]
-        let finalDots = dots
-        console.log("original finalDots =" + finalDots)
-        let head = finalDots[dots.length-1]
-        let head2 = [head[0],head[1]]
-
-        if (event.keyCode == 37) {
-            console.log("left")
-            setDirectionState({
-                direction: "LEFT"
-            })
-        } else if (event.keyCode == 38) {
-            console.log("UP")
-            setDirectionState({
-                direction: "UP"
-            })
-        } else if (event.keyCode == 39) {
-            console.log("right")
-            setDirectionState({
-                direction: "RIGHT"
-            })
-        } else if (event.keyCode == 40) {
-            console.log("DOWN")
-            setDirectionState({
-                direction: "DOWN"
-            })
-            head2[0] = head[0]
-            head2[1] += 3
-            finalDots.push(head2)
-            console.log("push =" + finalDots)
-            finalDots.shift()
-            console.log("final dots =" + finalDots)
-            // setState({
-            //     snakeDots: finalDots
-            // })
-            console.log(state)
-        }
-    })
+  React.useEffect(() => {
+    const context = canvasRef.current.getContext("2d")
+    context.setTransform(10, 0, 0, 10, 0, 0)
+    context.clearRect(0, 0, 500, 500)
+    context.fillStyle = "green"
+    snakeState.forEach(([x,y]) => context.fillRect(x,y, 2, 1))
+    context.fillStyle = "red"
+    context.fillRect(foodState[0], foodState[1], 2, 1)
+  }, [snakeState, foodState, gameOver])
 
 
-    // function that deletes the snake tail and adds a new snake head in the direction the arrow keys point to
-    const snakePath = () => {
-        let dots = [...state.snakeDots]
-        let finalDots = dots
-        console.log("original finalDots =" + finalDots)
-        let head = finalDots[dots.length-1]
-        let head2 = [head[0],head[1]]
-        console.log("head2 =" + head2)
-        console.log("starting head =" + head)
-        
-        // console.log("hello")
-        if (directionState.direction == "LEFT") {
-            head2[0] -= 3
-            head2[1] = head[1]
-            console.log("LEFT")
-        } else if (directionState.direction == "UP") {
-            head2[0] = head[0]
-            head2[1] -= 3
-            console.log("UP")
-        } else if (directionState.direction == "RIGHT") {
-            head2[0] += 3
-            head2[1] = head[1]
-            console.log("RIGHT")
-        } else if (directionState.direction == "DOWN") {
-            console.log("before head = " + dots)
-            head2[0] = head[0]
-            head2[1] += 3
-            console.log("head =" + head)
-            console.log("DOWN")
-        }
-        // console.log("goodbye")
-        console.log("before push = " + finalDots)
-        finalDots.push(head2)
-        console.log("push =" + finalDots)
-        finalDots.shift()
-        console.log("final dots =" + finalDots)
-        setState({
-            snakeDots: finalDots
-        })
-        console.log(state)
-    }
-
-  
-
-    
-    
-
-    return(
-        <div>
-            <h1>Game Page</h1>
-            <div className="gameContainer">
-                <Snake snakeDots={state.snakeDots}/>
-                <SnakeFood dot={foodState.snakeFood}/>
-            </div>
-        </div>
-    )
+  gameInterval(() => runGame(), speedState)
+  return (
+    <div className="App">
+      <h1>Snake Game</h1>
+      <div>
+        <canvas style={{border: "1px solid black", width:"500px", height:"500px"}} ref={canvasRef}/>
+        <button onClick={startGame}>Start Game</button>
+        <button onClick={endGame}>End Game</button>
+      </div>
+    </div>
+  );
 }
 
-export default Game
 
-
+export default Game;

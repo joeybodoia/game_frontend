@@ -62,10 +62,10 @@ Auth styling
 
 
 
- .gameContainer {
+ /* .gameContainer {
   position: relative;
-  height: 60vw;
-  width: 60vw;
+  height: 800px;
+  width: 800px;
   border: 2px solid black;
   margin-left: auto;
   margin-right: auto;
@@ -89,7 +89,7 @@ Auth styling
    border: 1px solid gray;
    z-index: 1;
 
- }
+ } */
 
 
 
