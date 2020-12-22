@@ -20,26 +20,31 @@ const Game = (props) => {
     const [directionState, setDirectionState] = React.useState([2,0])
     const [speedState, setSpeedState] = React.useState(null)
     const [scoreState, setScoreState] = React.useState(0)
-    const [gameOver, setGameOver] = React.useState(false)
 
      // startGame function to be called when the start game button is clicked
-  const startGame = () => {
-    setSnakeState([[2,0],[4,0]])
-    setFoodState([8,8])
-    setDirectionState([2,0])
-  }
+    const startGame = () => {
+        setSnakeState([[2,0],[4,0]])
+        setFoodState([8,8])
+        setDirectionState([2,0])
+    }
 
-  const endGame = () => {
-    setSpeedState(null)
-    setGameOver(true)
-  }
+    // endGame function to be called when end game button is clicked
+    const endGame = () => {
+        setSpeedState(null)
+    }
+
+    const arrowKeyListeners = ({ keyCode }) => {
+        if (keyCode >= 37 && keyCode <= 40) {
+            setDirectionState(directions[keyCode])
+        } 
+    }
 
 
   return (
     <div className="App">
     <h1 style={{"margin-bottom":"100px"}}>Snake Game</h1>
     <button onClick={startGame}>Start Game</button>
-    <div style={{"height":"500px", "width":"500px", "border":"2px solid black", "margin-left":"auto", "margin-right":"auto", "position": "relative"}} >
+    <div style={{"height":"500px", "width":"500px", "border":"2px solid black", "margin-left":"auto", "margin-right":"auto", "position": "relative"}} role="button" tabIndex="0" onKeyDown = {event => arrowKeyListeners(event)} >
        <SnakeMap snakeSquares = {snakeState}/>
        <SnakeFood foodSquare = {foodState}/>
     </div>
