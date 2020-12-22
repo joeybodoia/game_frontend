@@ -1,6 +1,6 @@
 
 import React from "react"
-import SnakeMap from "./snakeMap.jsx"
+import SnakeMap from "./SnakeMap.jsx"
 import SnakeFood from "./SnakeFood.jsx"
 import { gameInterval } from "./GameInterval.jsx"
 

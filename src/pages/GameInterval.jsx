@@ -1,4 +1,4 @@
-// Custom Hook by Dan Abramov
+// I'm using a custom hook I found online that was made by Dan Abramov
 import { useEffect, useRef } from 'react';
 
 export function gameInterval(callback, delay) {
