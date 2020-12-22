@@ -105,6 +105,7 @@ const Game = (props) => {
   return (
     <div className="App">
     <h1 style={{"margin-bottom":"100px"}}>Snake Game</h1>
+    <h1>Score: {scoreState}</h1>
     <button onClick={startGame}>Start Game</button>
     <div style={{"height":"500px", "width":"500px", "border":"2px solid black", "margin-left":"auto", "margin-right":"auto", "position": "relative"}} role="button" tabIndex="0" onKeyDown = {event => arrowKeyListeners(event)} >
        <SnakeMap snakeSquares = {snakeState}/>
