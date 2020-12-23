@@ -9,7 +9,6 @@ const Nav = (props) => {
 
     return(
         <header>
-            <h1>Snake Game</h1>
             <nav>
                 {!state.token ? (<><Link to="/"><div>Home</div></Link><Link to="/auth/signup"><div>Sign up</div></Link>
                 <Link to="/auth/login"><div>Log in</div></Link></>) : null}
@@ -18,9 +17,8 @@ const Nav = (props) => {
                     props.history.push("/")
                 }}>Logout</div> : null}
                 {state.token ? <><Link to="/game"><div>Game</div></Link></> : null}
-
-
             </nav>
+            <h1>Snake Game</h1>
         </header>
     )
 }
