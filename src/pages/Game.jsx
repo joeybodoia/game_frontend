@@ -16,7 +16,7 @@ const Game = (props) => {
 
 
     //   set initial states for snake, food, direction, speed, score, and gameOver
-    const [snakeState, setSnakeState] = React.useState([[2,0],[4,0]])
+    const [snakeState, setSnakeState] = React.useState([[4,0],[8,0]])
     const [foodState, setFoodState] = React.useState([8,8])
     const [directionState, setDirectionState] = React.useState([2,0])
     const [speedState, setSpeedState] = React.useState(null)
@@ -25,7 +25,7 @@ const Game = (props) => {
     const randomizeFood = () => {
         let x = Math.floor((Math.random()*90)) //needs to be a multiple of two
         let y = Math.floor((Math.random()*90)) //needs to be a multiple of two
-        while (x%2 != 0 || y%2 != 0){
+        while (x%4 != 0 || y%4 != 0){
           x = Math.floor((Math.random()*90)) 
           y = Math.floor((Math.random()*90))
         }
@@ -34,18 +34,18 @@ const Game = (props) => {
 
       // create key value pairs where keys are the keyCode for each arrow and the value is the change in [x,y] cooridnates moving that direction
     const directions = {
-        37: [-2, 0],
-        38: [0, -2], 
-        39: [2, 0], 
-        40: [0, 2], 
+        37: [-4, 0],
+        38: [0, -4], 
+        39: [4, 0], 
+        40: [0, 4], 
       };
 
 
      // startGame function to be called when the start game button is clicked
     const startGame = () => {
-        setSnakeState([[2,0],[4,0]])
+        setSnakeState([[4,0],[8,0]])
         setFoodState([8,8])
-        setDirectionState([2,0])
+        setDirectionState([4,0])
         setSpeedState(300)
         setScoreState(0)
     }
@@ -54,6 +54,14 @@ const Game = (props) => {
     const endGame = () => {
         setSpeedState(null)
     }
+
+    // function to prevent the arrow keys from changing the browser viewpoint
+    window.addEventListener("keydown", function(e) {
+      // space and arrow keys
+      if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+          e.preventDefault();
+      }
+  }, false);
 
     // function to handle changing direction state based on arrow key keyCodes
     const arrowKeyListeners = ({ keyCode }) => {
@@ -100,6 +108,13 @@ const Game = (props) => {
         // snakeStateCopy.pop()
         // console.log(snakeStateCopy)
         setSnakeState(snakeStateCopy)
+        console.log("snakeStateCopy[0][0] = " + snakeStateCopy[0][0])
+        console.log("snakeStateCopy[0][1] = " + snakeStateCopy[0][1])
+        console.log("snakeStateCopy[0] = " + snakeStateCopy[0])
+        if (snakeStateCopy[0][0] > 96 || snakeStateCopy[0][1] > 96 || snakeStateCopy[0][0] < 0 || snakeStateCopy[0][1] < 0){
+          setSpeedState(null)
+          console.log("game over")
+        }
         // console.log("snakeStateCopy[0]= " + snakeStateCopy[0])
         // if (scoreState > 80) {
         //   console.log("game over")
@@ -129,14 +144,19 @@ const Game = (props) => {
 
   return (
     <div className="App">
-    <h1 style={{"margin-bottom":"100px"}}>Snake Game</h1>
-    <h1>Score: {scoreState}</h1>
-    <button onClick={startGame}>Start Game</button>
-    <div style={{"height":"500px", "width":"500px", "border":"2px solid black", "margin-left":"auto", "margin-right":"auto", "position": "relative"}} role="button" tabIndex="0" onKeyDown = {event => arrowKeyListeners(event)} >
-       <SnakeMap snakeSquares = {snakeState}/>
-       <SnakeFood foodSquare = {foodState}/>
+    <div style={{"height":"600px", "width":"700px", "border":"2px solid white", "margin-left":"auto", "margin-right":"auto"}} role="button" tabIndex="0" onKeyDown = {event => arrowKeyListeners(event)}>
+    <div style={{"height":"3.5vw","display":"flex", "justifyContent":"space-around", "border":"2px solid white", "margin-bottom":"1vw", "alignItems":"center"}}>
+      <h1 style={{"font-size":"2vw", "color":"red"}}>Score: {scoreState}</h1>
+      <button onClick={startGame}>Start Game</button>
+      <button onClick={endGame}>End Game</button>
     </div>
-    <button onClick={endGame}>End Game</button>
+      <div className="gameBoard" style={{"height":"480px", "width":"480px", "border":"2px solid black", "margin-left":"auto", "margin-right":"auto", "position": "relative"}} role="button" tabIndex="0" onKeyDown = {event => arrowKeyListeners(event)} >
+        <SnakeMap snakeSquares = {snakeState}/>
+        <SnakeFood foodSquare = {foodState}/>
+      </div>
+    </div>
+    
+    
    </div>
   );
 }

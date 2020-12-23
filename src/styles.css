@@ -16,7 +16,7 @@ body {
 
 header {
   text-align: center;
-  height: 13vw;
+  height: 10vw;
   width:95%;
   margin-left: auto;
   margin-right:auto;
@@ -82,7 +82,7 @@ Auth styling
 
 
 .profile {
-  border:2px solid black;
+  border:3px solid black;
   border-radius: 10px;
   height: 40vw;
   width: 35vw;
@@ -92,13 +92,14 @@ Auth styling
   margin-right: auto;
   align-items: center;
   justify-content: space-around;
+  background-color:lightgray;
 }
 
  .profilePic {
    height: 10vw;
    width: 10vw;
    border: 2px solid red;
-   border-radius: 25px;
+   border-radius: 40px;
  }
 
  .nameContainer {
@@ -188,4 +189,9 @@ blockquote.speech {
   padding: 2.5% 3.5% 20% 3.5%;
   /* padding-bottom: 20%; */
   font-size: 2vw;
+}
+
+
+.gameBoard {
+  background-color:lightgray;
 }

@@ -16,7 +16,7 @@ const Nav = (props) => {
                     dispatch({type: "logout"})
                     props.history.push("/")
                 }}>Logout</div> : null}
-                {state.token ? <><Link to="/game"><div>Game</div></Link></> : null}
+                {state.token ? <><Link to="/game"><div>Play Snake!</div></Link></> : null}
             </nav>
             <h1>Snake Game</h1>
         </header>
