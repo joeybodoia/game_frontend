@@ -1,10 +1,18 @@
 
 import React from "react"
+import {useAppState} from "../AppState.jsx"
 import SnakeMap from "./SnakeMap.jsx"
 import SnakeFood from "./SnakeFood.jsx"
 import { gameInterval } from "./GameInterval.jsx"
 
 const Game = (props) => {
+
+    // pass in appState so I can update highscore for the user's profile
+    const { state } = useAppState()
+
+    const {profile, token, url} = state
+    console.log(profile.firstName)
+    console.log(token)
 
 
     //   set initial states for snake, food, direction, speed, score, and gameOver
@@ -39,6 +47,7 @@ const Game = (props) => {
         setFoodState([8,8])
         setDirectionState([2,0])
         setSpeedState(300)
+        setScoreState(0)
     }
 
     // endGame function to be called when end game button is clicked
@@ -70,7 +79,7 @@ const Game = (props) => {
           if (speedState >200) {
             setSpeedState(speedState-50)
           } else if (speedState <= 200 && speedState > 100){
-            setSpeedState(speedState-25)
+            setSpeedState(speedState-20)
           } else if (speedState <= 100 && speedState > 20) {
             setSpeedState(speedState-10)
           } 
@@ -92,9 +101,25 @@ const Game = (props) => {
         // console.log(snakeStateCopy)
         setSnakeState(snakeStateCopy)
         // console.log("snakeStateCopy[0]= " + snakeStateCopy[0])
-        // if (snakeStateCopy[1][0] >= 28 || snakeStateCopy[1][1] >= 28 || snakeStateCopy[1][0] < 1 || snakeStateCopy[1][1] < 1) {
+        // if (scoreState > 80) {
         //   console.log("game over")
         //   endGame()
+        //   if (scoreState > profile.highScore){
+        //       fetch(url + "/profiles/" + profile.id, {
+        //         method: "put",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //             Authorization: "bearer " + token
+        //         },
+        //         body: JSON.stringify({
+        //             id:profile.id,
+        //             firstName: profile.firstName,
+        //             lastName: profile.lastName,
+        //             profilePicture: profile.profilePicture,
+        //             highScore: scoreState
+        //         }),
+        //     }).then((response) => response.json())
+        //   }
         // }
       }
     

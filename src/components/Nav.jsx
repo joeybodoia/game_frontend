@@ -9,7 +9,7 @@ const Nav = (props) => {
 
     return(
         <header>
-            <h1>App title</h1>
+            <h1>Snake Game</h1>
             <nav>
                 {!state.token ? (<><Link to="/"><div>Home</div></Link><Link to="/auth/signup"><div>Sign up</div></Link>
                 <Link to="/auth/login"><div>Log in</div></Link></>) : null}

@@ -61,54 +61,36 @@ Auth styling
  }
 
 
-
- /* .gameContainer {
-  position: relative;
-  height: 800px;
-  width: 800px;
-  border: 2px solid black;
+.profile {
+  border:2px solid black;
+  border-radius: 10px;
+  height: 40vw;
+  width: 35vw;
+  display: flex;
+  flex-direction: column;
   margin-left: auto;
   margin-right: auto;
- }
-
-
- .snakeDot {
-   position: absolute;
-   width: 3%;
-   height: 3%;
-   background-color: green;
-   border: 1px solid gray;
-   z-index: 2;
- }
-
- .snakeFood {
-   position: absolute;
-   width: 3%;
-   height: 3%;
-   background-color: red;
-   border: 1px solid gray;
-   z-index: 1;
-
- } */
-
-
-
-
-/* .gridContainer {
-  height: 100vw;
-  width: 100vw;
-  border: 2px solid green;
-  display: flex;
-  flex-wrap:wrap;
-  align-content: flex-start;
+  align-items: center;
+  justify-content: space-around;
 }
 
+ .profilePic {
+   height: 10vw;
+   width: 10vw;
+   border: 2px solid red;
+   border-radius: 25px;
+ }
 
-.gridDots {
-  height: 2%;
-  width: 2%;
-} */
+ .nameContainer {
+   border: 2px solid black;
+ }
 
+ .buttonContainer {
+    height: 2.5vw;
+    width: 12vw;
+    display: flex;
+    border: 2px solid black;
+}
 
 
  

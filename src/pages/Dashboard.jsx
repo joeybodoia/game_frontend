@@ -29,7 +29,7 @@ const Dashboard = (props) => {
         console.log(state.profile)
         return(
         <div className="dashboard">
-        <h1>{username}'s Profile</h1>
+        <h1 style={{textAlign:"center"}}>{username}'s Profile</h1>
         {/* <ul>
             {state.profile.map((pro) => (
                 <div>
@@ -39,24 +39,29 @@ const Dashboard = (props) => {
                 </div>
         ))}
         </ul> */}
-        <div>
-            <img src={profile.profilePicture} style={{"height":"20vw", "width":"20vw", "border":"3px solid red", "border-radius": "25px"}}></img>
-            <h2>first name: {profile.firstName}</h2>
-            <h2>last name: {profile.lastName}</h2>
-            <button onClick={()=> {
-                dispatch({type: "select", payload: profile})
-                props.history.push("/dashboard/edit")
-            }}>Edit Profile</button>
-            <button onClick={()=> {
-                fetch(url + "/profiles/" + profile.id, {
-                    method: "delete",
-                    headers: {
-                        Authorization: "bearer " + token 
-                    }
-                })
-                .then(() => getProfile())
-            }}>Delete Profile</button>
-            <Route path="/dashboard/:action" render={(rp) => <Form {...rp} getProfile={getProfile}/>}/>
+        <div className="profile">
+            <img className="profilePic" src={profile.profilePicture} ></img>
+            <div className="nameContainer">
+                <h2>First Name: {profile.firstName}</h2>
+                <h2>Last Name: {profile.lastName}</h2>
+                <h2>High Score: {profile.highScore}</h2>
+            </div>
+            <div className = "buttonContainer">
+                <button onClick={()=> {
+                    dispatch({type: "select", payload: profile})
+                    props.history.push("/dashboard/edit")
+                }}>Edit Profile</button>
+                <button onClick={()=> {
+                    fetch(url + "/profiles/" + profile.id, {
+                        method: "delete",
+                        headers: {
+                            Authorization: "bearer " + token 
+                        }
+                    })
+                    .then(() => getProfile())
+                }}>Delete Profile</button>
+                <Route path="/dashboard/:action" render={(rp) => <Form {...rp} getProfile={getProfile}/>}/>
+            </div>
         </div>
         </div>
     )}
