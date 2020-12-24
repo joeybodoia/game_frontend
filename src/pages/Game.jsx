@@ -2,7 +2,7 @@
 import React from "react"
 import {useAppState} from "../AppState.jsx"
 import SnakeMap from "./SnakeMap.jsx"
-import SnakeFood from "./SnakeFood.jsx"
+import SnakeFood from "./snakeFood.jsx"
 import { gameInterval } from "./GameInterval.jsx"
 
 const Game = (props) => {
