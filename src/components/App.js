@@ -5,6 +5,7 @@ import Home from "../pages/Home.jsx"
 import Auth from "../pages/Auth.jsx"
 import Dashboard from "../pages/Dashboard.jsx"
 import Game from "../pages/Game.jsx"
+import Leaderboard from "../pages/Leaderboard.jsx"
 import {useAppState} from "../AppState.jsx"
 
 
@@ -37,6 +38,7 @@ export const App = (props) => {
     <Route path="/auth/:form" component={Auth}/>
     <Route path="/dashboard" component={Dashboard}/>
     <Route path="/game" component={Game}/>
+    <Route path="/leaderboard" component={Leaderboard}/>
   </Switch>
   </>)
 };
