@@ -79,6 +79,32 @@ const Game = (props) => {
         console.log("snakeStateCopy = " + snakeStateCopy)
         console.log("snakeState = " + snakeState)
         const newHead = [snakeStateCopy[0][0] + directionState[0], snakeStateCopy[0][1]+directionState[1]]
+        // if (newHead[0] >= 96 || newHead[1] >= 96 || newHead[0] < 0 || newHead[1] < 0){
+        //   setSpeedState(null)
+        //   console.log("game over")
+        //   if (scoreState > profile.highScore){
+        //     fetch(url + "/profiles/" + profile.id, {
+        //       method: "put",
+        //       headers: {
+        //           "Content-Type": "application/json",
+        //           Authorization: "bearer " + token
+        //       },
+        //       body: JSON.stringify({
+        //           highScore: scoreState
+        //       }),
+        //     }).then((response) => response.json())
+        //     fetch(url + "/users/" + user_id, {
+        //       method: "put",
+        //       headers: {
+        //           "Content-Type": "application/json",
+        //           Authorization: "bearer " + token
+        //       },
+        //       body: JSON.stringify({
+        //           highScore: scoreState
+        //       }),
+        //   }).then((response) => response.json())
+        // }
+        // }
         console.log("newHead = " + newHead)
         snakeStateCopy.unshift(newHead)   //add the new head onto the snakeStateCopy
         // if the newhead square is equal to the food square then increase the speed and randomize the food position
@@ -123,7 +149,7 @@ const Game = (props) => {
                   Authorization: "bearer " + token
               },
               body: JSON.stringify({
-                  highScore: scoreState
+                  highscore: scoreState
               }),
           }).then((response) => response.json())
         }

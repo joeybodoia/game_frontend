@@ -7,7 +7,8 @@ import React, { useReducer, useContext } from "react"
 
 const initialState = {
     // url: "https://jb-rails-game-backend.herokuapp.com",
-    url: "https://jb-snake-backend.herokuapp.com",
+    // url: "https://jb-snake-backend.herokuapp.com",
+    url:"https://jb-snake-backend-2.herokuapp.com",
     token: null,
     username: null, 
     user_id: null,

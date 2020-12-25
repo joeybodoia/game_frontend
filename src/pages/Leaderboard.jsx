@@ -20,19 +20,21 @@ const Leaderboard = (props) => {
         dispatch({type: "getUsers", payload: users})    
     }
 
+
+
     React.useEffect(() => {
         getUsers()
     }, [])
+
    
 
     const loadedUsers = () => (
-        // console.log(users)
         <div>
-            {users.map((user)=> {
+            {users.slice(0,5).map((user)=> {
                 return(
                     <div className="users" key={user.id}>
-                        <h1 style={{color:"white"}}>{user.username}:{user.highScore>0 ? user.highScore :0}</h1>
-                        <h2 style={{color:"white"}}>{user.id}</h2>
+                        <h1 style={{color:"white"}}>{user.username}:{user.highscore>0 ? user.highscore :0}</h1>
+                        {/* <h1 style={{color:"white"}}>{user.username}:{user.highscore}</h1> */}
                     </div>
                 )
             })}
@@ -44,7 +46,7 @@ const Leaderboard = (props) => {
         <div>
             <h1 style={{color:"white"}}>Leaderboard</h1>
             <div>
-                {users ? loadedUsers(): <h1>Loading...</h1>}
+                {users ? loadedUsers(): <h1 style={{color:"white"}}>Loading...</h1>}
             </div>
         </div>
     )
