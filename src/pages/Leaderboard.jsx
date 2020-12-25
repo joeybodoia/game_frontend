@@ -32,6 +32,7 @@ const Leaderboard = (props) => {
                 return(
                     <div className="users" key={user.id}>
                         <h1 style={{color:"white"}}>{user.username}:{user.highScore>0 ? user.highScore :0}</h1>
+                        <h2 style={{color:"white"}}>{user.id}</h2>
                     </div>
                 )
             })}

@@ -10,6 +10,7 @@ const initialState = {
     url: "https://jb-snake-backend.herokuapp.com",
     token: null,
     username: null, 
+    user_id: null,
     profile: null,
     users: null,
     new: {
@@ -41,7 +42,7 @@ const reducer = (state, action) => {
             return newState
             break
         case "logout":
-            newState = {...state, token:null, username:null}
+            newState = {...state, token:null, username:null, user_id:null}
             window.localStorage.removeItem("auth")
             return newState
             break

@@ -16,9 +16,10 @@ const Auth = (props) => {
 
     React.useEffect(() => {
         if (userData) {
+            console.log(userData.user.id)
             const { token, user} = userData
-            dispatch({ type: "auth", payload: { token, username: user.username } })
-            window.localStorage.setItem("auth", JSON.stringify({ token, username: user.username }))
+            dispatch({ type: "auth", payload: { token, username: user.username, user_id: user.id } })
+            window.localStorage.setItem("auth", JSON.stringify({ token, username: user.username, user_id: user.id }))
             props.history.push("/dashboard")
         }
     }, [userData])

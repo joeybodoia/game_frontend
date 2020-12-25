@@ -8,8 +8,9 @@ const Dashboard = (props) => {
 
     const {state, dispatch} = useAppState()
     
-    const {token, url, profile, username} = state
+    const {token, url, profile, username, user_id} = state
 
+    console.log("user id = " + user_id)
     const getProfile = async () => {
         const response = await fetch(url + "/profiles/", {
             method: "get",

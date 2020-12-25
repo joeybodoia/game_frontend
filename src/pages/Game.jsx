@@ -10,8 +10,10 @@ const Game = (props) => {
     // pass in appState so I can update highscore for the user's profile
     const { state } = useAppState()
 
-    const {profile, token, url} = state
+    const {profile, token, url, username, user_id} = state
     console.log("profile =" + profile)
+    console.log("username = " + username)
+    console.log("user id = " + user_id)
     console.log("highScore = " + profile.highScore)
     console.log(token)
 
@@ -105,6 +107,16 @@ const Game = (props) => {
           console.log("game over")
           if (scoreState > profile.highScore){
             fetch(url + "/profiles/" + profile.id, {
+              method: "put",
+              headers: {
+                  "Content-Type": "application/json",
+                  Authorization: "bearer " + token
+              },
+              body: JSON.stringify({
+                  highScore: scoreState
+              }),
+            }).then((response) => response.json())
+            fetch(url + "/users/" + user_id, {
               method: "put",
               headers: {
                   "Content-Type": "application/json",
