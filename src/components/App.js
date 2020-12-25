@@ -30,6 +30,7 @@ export const App = (props) => {
 
 
 
+
   return(
   <>
   <Route path="/" component={Nav}/>
@@ -39,6 +40,7 @@ export const App = (props) => {
     <Route path="/dashboard" component={Dashboard}/>
     <Route path="/game" component={Game}/>
     <Route path="/leaderboard" component={Leaderboard}/>
+    
   </Switch>
   </>)
 };

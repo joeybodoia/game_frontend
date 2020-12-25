@@ -11,7 +11,8 @@ const Game = (props) => {
     const { state } = useAppState()
 
     const {profile, token, url} = state
-    console.log(profile.firstName)
+    console.log("profile =" + profile)
+    console.log("highScore = " + profile.highScore)
     console.log(token)
 
 
@@ -102,31 +103,23 @@ const Game = (props) => {
         if (snakeStateCopy[0][0] > 96 || snakeStateCopy[0][1] > 96 || snakeStateCopy[0][0] < 0 || snakeStateCopy[0][1] < 0){
           setSpeedState(null)
           console.log("game over")
+          if (scoreState > profile.highScore){
+            fetch(url + "/profiles/" + profile.id, {
+              method: "put",
+              headers: {
+                  "Content-Type": "application/json",
+                  Authorization: "bearer " + token
+              },
+              body: JSON.stringify({
+                  highScore: scoreState
+              }),
+          }).then((response) => response.json())
+        }
         }
         // for (let i=1; i<snakeStateCopy.length;i++) {
         //   console.log(`snakeStateCopy${[i]}[0] ` + snakeStateCopy[i][0])
         // }
         // console.log("snakeStateCopy[0]= " + snakeStateCopy[0])
-        // if (scoreState > 80) {
-        //   console.log("game over")
-        //   endGame()
-        //   if (scoreState > profile.highScore){
-        //       fetch(url + "/profiles/" + profile.id, {
-        //         method: "put",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //             Authorization: "bearer " + token
-        //         },
-        //         body: JSON.stringify({
-        //             id:profile.id,
-        //             firstName: profile.firstName,
-        //             lastName: profile.lastName,
-        //             profilePicture: profile.profilePicture,
-        //             highScore: scoreState
-        //         }),
-        //     }).then((response) => response.json())
-        //   }
-        // }
       }
     
     

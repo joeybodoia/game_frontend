@@ -11,6 +11,7 @@ const initialState = {
     token: null,
     username: null, 
     profile: null,
+    users: null,
     new: {
         firstName: "",
         lastName: "",
@@ -50,6 +51,10 @@ const reducer = (state, action) => {
             break
         case "select":
             newState = {...state, edit: action.payload}
+            return newState
+            break
+        case "getUsers":
+            newState = {...state, users: action.payload}
             return newState
             break
         default:
