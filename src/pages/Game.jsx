@@ -54,7 +54,7 @@ const Game = (props) => {
         setScoreState(0)
     }
 
-
+    // put requests to update the profile model highscore and user model highscore when necessary
     const updateScore = () => {
       fetch(url + "/profiles/" + profile.id, {
         method: "put",
@@ -106,7 +106,9 @@ const Game = (props) => {
           if (newHead[0] == snakeStateCopy[i][0] & newHead[1] == snakeStateCopy[i][1]){
               setModalOpen(true)
               setSpeedState(null)
-              updateScore()
+              if (scoreState > profile.highScore){
+                updateScore()
+            }
           } 
         }
 
