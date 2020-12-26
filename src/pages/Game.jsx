@@ -10,12 +10,7 @@ const Game = (props) => {
     // pass in appState so I can update highscore for the user's profile
     const { state } = useAppState()
 
-    const {profile, token, url, username, user_id} = state
-    // console.log("profile =" + profile)
-    // console.log("username = " + username)
-    // console.log("user id = " + user_id)
-    // console.log("highScore = " + profile.highScore)
-    // console.log(token)
+    const {profile, token, url, user_id} = state
 
 
     //   set initial states for snake, food, direction, speed, score, and gameOver
@@ -26,11 +21,11 @@ const Game = (props) => {
     const [scoreState, setScoreState] = React.useState(0)
 
     const randomizeFood = () => {
-        let x = Math.floor((Math.random()*90)) //needs to be a multiple of two
-        let y = Math.floor((Math.random()*90)) //needs to be a multiple of two
+        let x = Math.floor((Math.random()*96)) //needs to be a multiple of two
+        let y = Math.floor((Math.random()*96)) //needs to be a multiple of two
         while (x%4 != 0 || y%4 != 0){
-          x = Math.floor((Math.random()*90)) 
-          y = Math.floor((Math.random()*90))
+          x = Math.floor((Math.random()*96)) 
+          y = Math.floor((Math.random()*96))
         }
         return [x,y]
       }
@@ -49,7 +44,7 @@ const Game = (props) => {
         setSnakeState([[8,0],[4,0]])
         setFoodState([8,8])
         setDirectionState([4,0])
-        setSpeedState(300)
+        setSpeedState(280)
         setScoreState(0)
     }
 
@@ -74,40 +69,23 @@ const Game = (props) => {
     }
 
 
-    // const snakeSelfCollision = () => {
-    //   for (let i =0;i<snakeStateCopy.length;i++){
-    //     console.log("snakeStateCopy[i][0] = " + snakeStateCopy[i][0])
-    //     console.log("snakeStateCopy[i][1] = " + snakeStateCopy[i][1])
-    //     console.log("newHead[0] = " + newHead[0])
-    //     console.log("newHead[1] = " + newHead[1])
-    //     if (newHead[0] == snakeStateCopy[i][0] & newHead[1] == snakeStateCopy[i][1]){
-    //         console.log("true")
-    //     } else {
-    //         console.log("false")
-    //     }
-    //   }
-
-    // }
-
     const runGame = () => {
         // create a copy of the snakeState in order to create the newHead in order to make the snake "move"
         const snakeStateCopy = JSON.parse(JSON.stringify(snakeState))
 
+        // create a variable for the new head that will be added onto the snake body based on direction
         const newHead = [snakeStateCopy[0][0] + directionState[0], snakeStateCopy[0][1]+directionState[1]]
-      
+        
+        // Check if snake runs into its own body
         for (let i =0;i<snakeStateCopy.length;i++){
-          console.log("snakeStateCopy[i][0] = " + snakeStateCopy[i][0])
-          console.log("snakeStateCopy[i][1] = " + snakeStateCopy[i][1])
-          console.log("newHead[0] = " + newHead[0])
-          console.log("newHead[1] = " + newHead[1])
           if (newHead[0] == snakeStateCopy[i][0] & newHead[1] == snakeStateCopy[i][1]){
-              console.log("true")
               setSpeedState(null)
-          } else {
-              console.log("false")
-          }
+          } 
         }
-        snakeStateCopy.unshift(newHead)   //add the new head onto the snakeStateCopy
+
+        //add the new head onto the snakeStateCopy
+        snakeStateCopy.unshift(newHead)  
+
         // if the newhead square is equal to the food square then increase the speed and randomize the food position
         if (newHead[0] == foodState[0] && newHead[1] == foodState[1]){
           setScoreState(scoreState+10)
@@ -116,22 +94,19 @@ const Game = (props) => {
           } else if (speedState <= 200 && speedState > 100){
             setSpeedState(speedState-20)
           } else if (speedState <= 100 && speedState > 20) {
-            setSpeedState(speedState-10)
+            setSpeedState(speedState-2)
           } 
           setFoodState(randomizeFood())       
         } 
+
         //delete the tail from the snakeStateCopy if the newhead isn't equal to the food state
         if (newHead[0] != foodState[0] || newHead[1] != foodState[1]) {
           snakeStateCopy.pop()
         }
-        // setSnakeState(snakeStateCopy)
-        // console.log("snakeStateCopy[0][0] = " + snakeStateCopy[0][0])
-        // console.log("snakeStateCopy[0][1] = " + snakeStateCopy[0][1])
-        // console.log("snakeStateCopy[0] = " + snakeStateCopy[0])
-        // if the snake goes off of the game board then end the game
+        
+        // if the snake goes off of the game board then end the game and update the profile highscore and user highscore if necessary
         if (snakeStateCopy[0][0] > 96 || snakeStateCopy[0][1] > 96 || snakeStateCopy[0][0] < 0 || snakeStateCopy[0][1] < 0){
           setSpeedState(null)
-          console.log("game over")
           if (scoreState > profile.highScore){
             fetch(url + "/profiles/" + profile.id, {
               method: "put",
@@ -155,14 +130,8 @@ const Game = (props) => {
           }).then((response) => response.json())
         }
         }
-        // console.log("snakeState copy = " + snakeState)
-        // console.log("snakeHead = " + newHead)
-        // console.log("length =" + snakeStateCopy.length)
+        
         setSnakeState(snakeStateCopy)
-        // for (let i=1; i<snakeStateCopy.length;i++) {
-        //   console.log(`snakeStateCopy${[i]}[0] ` + snakeStateCopy[i][0])
-        // }
-        // console.log("snakeStateCopy[0]= " + snakeStateCopy[0])
       }
     
     

@@ -5,27 +5,37 @@ Nav Styling
 */
 
 body {
-  height: 70vw;
-  border: 2px solid white;
-  background-color: black;
+  
+  background-color: rgb(30,30,30);
+}
+
+.backgroundImage {
+  height: 50vw;
+  /* border: 2px solid white; */
+  background-color: rgb(30,30,30);
   background-image: url("https://i.imgur.com/MOLtnHd.png");
   background-repeat: no-repeat;
-  background-size: 80% 80%;
+  background-size: 75% 88%;
   background-position: 40% 50%;
 }
 
 header {
   text-align: center;
-  height: 10vw;
-  width:95%;
+  height: 11vw;
+  width:100%;
+  background-color:rgb(30,30,30);
   margin-left: auto;
   margin-right:auto;
-  border: 2px solid purple;
+  /* border: 2px solid rgb(147,112,219); */
+  padding-bottom: 1vw;
 }
 
 header h1 {
-  font-size: 3vw;
-  color: red;
+  font-size: 5vw;
+  margin-top: 1vw;
+  color: #B08AAB;
+  text-shadow: 2px 2px rgb(255,250,250);
+  font-family: 'Kaushan Script', cursive;
 }
 
 
@@ -41,18 +51,19 @@ header nav a {
 
 header nav div {
   font-size: 2vw;
-  background-color: gray;
-  color: white;
+  background-color: black;
+  color: 	rgb(255,250,250);
   width: 12vw;
-  border: 3px solid purple;
+  border: 3px solid red;
   border-radius: 7px;
   transition: background-color .2s, color .2s;
   padding: 0.5vw;
-  margin-top:0.5vw;
+  margin-top:-2.2vw;
+  font-family: 'Kaushan Script', cursive;
 }
 
 header nav div:hover {
-  background-color: beige;
+  background-color: lightgray;
   color: black;
 }
 
@@ -133,7 +144,7 @@ Auth styling
   color: purple;
 }
  
-.balloon {
+/* .balloon {
   width: 250px;
   height: 75px;
   padding: 50px;
@@ -155,11 +166,8 @@ Auth styling
   bottom: -20px;
   border: solid 10px;
   border-color: #fff transparent transparent transparent;
-  /* border-color: purple; */
-  
-  /* transform: skew(0deg, 0deg); */
   transform: skewX(-45deg);
-}
+} */
 
 /* section { 
   min-height: 100vh; 
@@ -168,7 +176,8 @@ Auth styling
   align-content: center;
 } */
 section { 
-  padding: 1.2rem; 
+  padding: 7.8rem; 
+  position: relative;
 }
 
 blockquote.bubble { 
@@ -180,7 +189,7 @@ blockquote.bubble {
   text-align: center;
   height: 0;
   box-sizing: content-box;
-  line-height: 2;
+  line-height: 1.5;
 }
 blockquote.speech {
   background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/speech-bubble.svg); 

@@ -10,11 +10,11 @@ const Home = (props) => {
         //     Welcome to Snake! Please sign up or log in to get started
         //     <span class="tip"></span>
         // </div>
-        <>
+        <div className="backgroundImage">
         <section>
             <blockquote class="speech bubble">Welcome to Snake! <br></br> Please sign up or log in to get started.</blockquote>
         </section>
-        </>
+        </div>
     )
 }
 

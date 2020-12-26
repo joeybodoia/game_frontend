@@ -9,6 +9,7 @@ const Nav = (props) => {
 
     return(
         <header>
+            <h1>SNAKE Game</h1>
             <nav>
                 {!state.token ? (<><Link to="/"><div>Home</div></Link><Link to="/auth/signup"><div>Sign up</div></Link>
                 <Link to="/auth/login"><div>Log in</div></Link></>) : null}
@@ -20,7 +21,6 @@ const Nav = (props) => {
                 {state.token ? <><Link to="/leaderboard"><div>Leaderboard</div></Link></> : null}
                 {state.token ? <><Link to="/game"><div>Play Snake!</div></Link></> : null}
             </nav>
-            <h1>Snake Game</h1>
         </header>
     )
 }
