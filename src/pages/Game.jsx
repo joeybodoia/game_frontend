@@ -154,8 +154,8 @@ const Game = (props) => {
        <div>
         <Link to="/dashboard"><button>Go to profile</button></Link>
         <Link to="/leaderboard"><button>Go to leaderboard</button></Link>
-        <button onClick={() => window.location.reload(false)}>Play Again!</button>
-        {/* <button style={{"margin-left":"auto","margin-right":"center"}} onClick={()=>setModalOpen(false)}>Play Again</button> */}
+        {/* <button onClick={() => window.location.reload(false)}>Play Again!</button> */}
+        <button style={{"margin-left":"auto","margin-right":"center"}} onClick={()=>setModalOpen(false)}>Play Again</button>
        </div>
       </Modal>
     <div style={{"height":"600px", "width":"80%", "margin-left":"auto", "margin-right":"auto", "margin-top":"1.2vw"}} role="button" tabIndex="0" onKeyDown = {event => arrowKeyListeners(event)}>
