@@ -11,17 +11,17 @@ const Game = (props) => {
     const { state } = useAppState()
 
     const {profile, token, url, username, user_id} = state
-    console.log("profile =" + profile)
-    console.log("username = " + username)
-    console.log("user id = " + user_id)
-    console.log("highScore = " + profile.highScore)
-    console.log(token)
+    // console.log("profile =" + profile)
+    // console.log("username = " + username)
+    // console.log("user id = " + user_id)
+    // console.log("highScore = " + profile.highScore)
+    // console.log(token)
 
 
     //   set initial states for snake, food, direction, speed, score, and gameOver
     const [snakeState, setSnakeState] = React.useState([[4,0],[8,0]])
     const [foodState, setFoodState] = React.useState([8,8])
-    const [directionState, setDirectionState] = React.useState([2,0])
+    const [directionState, setDirectionState] = React.useState([4,0])
     const [speedState, setSpeedState] = React.useState(null)
     const [scoreState, setScoreState] = React.useState(0)
 
@@ -46,7 +46,7 @@ const Game = (props) => {
 
      // startGame function to be called when the start game button is clicked
     const startGame = () => {
-        setSnakeState([[4,0],[8,0]])
+        setSnakeState([[8,0],[4,0]])
         setFoodState([8,8])
         setDirectionState([4,0])
         setSpeedState(300)
@@ -73,39 +73,40 @@ const Game = (props) => {
         } 
     }
 
+
+    // const snakeSelfCollision = () => {
+    //   for (let i =0;i<snakeStateCopy.length;i++){
+    //     console.log("snakeStateCopy[i][0] = " + snakeStateCopy[i][0])
+    //     console.log("snakeStateCopy[i][1] = " + snakeStateCopy[i][1])
+    //     console.log("newHead[0] = " + newHead[0])
+    //     console.log("newHead[1] = " + newHead[1])
+    //     if (newHead[0] == snakeStateCopy[i][0] & newHead[1] == snakeStateCopy[i][1]){
+    //         console.log("true")
+    //     } else {
+    //         console.log("false")
+    //     }
+    //   }
+
+    // }
+
     const runGame = () => {
         // create a copy of the snakeState in order to create the newHead in order to make the snake "move"
         const snakeStateCopy = JSON.parse(JSON.stringify(snakeState))
-        console.log("snakeStateCopy = " + snakeStateCopy)
-        console.log("snakeState = " + snakeState)
+
         const newHead = [snakeStateCopy[0][0] + directionState[0], snakeStateCopy[0][1]+directionState[1]]
-        // if (newHead[0] >= 96 || newHead[1] >= 96 || newHead[0] < 0 || newHead[1] < 0){
-        //   setSpeedState(null)
-        //   console.log("game over")
-        //   if (scoreState > profile.highScore){
-        //     fetch(url + "/profiles/" + profile.id, {
-        //       method: "put",
-        //       headers: {
-        //           "Content-Type": "application/json",
-        //           Authorization: "bearer " + token
-        //       },
-        //       body: JSON.stringify({
-        //           highScore: scoreState
-        //       }),
-        //     }).then((response) => response.json())
-        //     fetch(url + "/users/" + user_id, {
-        //       method: "put",
-        //       headers: {
-        //           "Content-Type": "application/json",
-        //           Authorization: "bearer " + token
-        //       },
-        //       body: JSON.stringify({
-        //           highScore: scoreState
-        //       }),
-        //   }).then((response) => response.json())
-        // }
-        // }
-        console.log("newHead = " + newHead)
+      
+        for (let i =0;i<snakeStateCopy.length;i++){
+          console.log("snakeStateCopy[i][0] = " + snakeStateCopy[i][0])
+          console.log("snakeStateCopy[i][1] = " + snakeStateCopy[i][1])
+          console.log("newHead[0] = " + newHead[0])
+          console.log("newHead[1] = " + newHead[1])
+          if (newHead[0] == snakeStateCopy[i][0] & newHead[1] == snakeStateCopy[i][1]){
+              console.log("true")
+              setSpeedState(null)
+          } else {
+              console.log("false")
+          }
+        }
         snakeStateCopy.unshift(newHead)   //add the new head onto the snakeStateCopy
         // if the newhead square is equal to the food square then increase the speed and randomize the food position
         if (newHead[0] == foodState[0] && newHead[1] == foodState[1]){
@@ -123,10 +124,10 @@ const Game = (props) => {
         if (newHead[0] != foodState[0] || newHead[1] != foodState[1]) {
           snakeStateCopy.pop()
         }
-        setSnakeState(snakeStateCopy)
-        console.log("snakeStateCopy[0][0] = " + snakeStateCopy[0][0])
-        console.log("snakeStateCopy[0][1] = " + snakeStateCopy[0][1])
-        console.log("snakeStateCopy[0] = " + snakeStateCopy[0])
+        // setSnakeState(snakeStateCopy)
+        // console.log("snakeStateCopy[0][0] = " + snakeStateCopy[0][0])
+        // console.log("snakeStateCopy[0][1] = " + snakeStateCopy[0][1])
+        // console.log("snakeStateCopy[0] = " + snakeStateCopy[0])
         // if the snake goes off of the game board then end the game
         if (snakeStateCopy[0][0] > 96 || snakeStateCopy[0][1] > 96 || snakeStateCopy[0][0] < 0 || snakeStateCopy[0][1] < 0){
           setSpeedState(null)
@@ -154,6 +155,10 @@ const Game = (props) => {
           }).then((response) => response.json())
         }
         }
+        // console.log("snakeState copy = " + snakeState)
+        // console.log("snakeHead = " + newHead)
+        // console.log("length =" + snakeStateCopy.length)
+        setSnakeState(snakeStateCopy)
         // for (let i=1; i<snakeStateCopy.length;i++) {
         //   console.log(`snakeStateCopy${[i]}[0] ` + snakeStateCopy[i][0])
         // }
