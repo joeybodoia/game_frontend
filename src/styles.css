@@ -77,20 +77,53 @@ Auth styling
 
  .auth form {
 
-  padding: 4vw;
+  padding: 3vw;
 
  }
- .auth form input {
+ /* .auth form input {
    background-color: gray;
-   color: white;
+   color: rgb(255,250,250);
+   font-family: 'Kaushan Script', cursive;
    padding: 1vw;
-   border: 3px solid purple;
+   border: 3px solid #B08AAB;
    border-radius: 7px;
    display: block;
    margin: 2vw auto;
    text-align: center;
+   width: 20%;
+ } */
+
+ .input {
+  background-color: black;
+  color: rgb(255,250,250);
+  font-family: 'Kaushan Script', cursive;
+  padding: 0.8vw;
+  border: 3px solid #B08AAB;
+  border-radius: 7px;
+  display: block;
+  margin: 2vw auto;
+  text-align: center;
+  width: 20%;
+  font-size: 1.5vw;
  }
 
+ .submit {
+  background-color: RGBA(255, 0, 0, 0.9);
+  color: rgb(255,250,250);
+  font-family: 'Kaushan Script', cursive;
+  padding: 0.5vw;
+  border: 3px solid black;
+  border-radius: 7px;
+  display: block;
+  margin: 2vw auto;
+  text-align: center;
+  width: 8%;
+ }
+
+ ::placeholder {
+   color: rgba(255,250,250,0.8);
+   font-family: 'Kaushan Script', cursive;
+ }
 
 .profile {
   border:3px solid black;
