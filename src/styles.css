@@ -371,3 +371,50 @@ blockquote.speech {
   font-family: 'Kaushan Script', cursive;
   font-size: 1.3vw;
 }
+
+
+/* 
+Game Over Modal
+ */
+
+ .modal-wrapper {
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
+.modal-backdrop {
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index: 100;
+  background-color: blue;
+}
+
+.modal-box {
+  position: relative;
+  border: 3px solid white;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  min-height: 30%;
+  width: 60%;
+  overflow-y:auto;
+  background-color:blue;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  z-index: 101;
+  padding: 40px;
+  border-radius:10px;
+  font-family: 'Source Code Pro', monospace;
+  overflow: scroll;
+}
+
+.modal-box h1 {
+  font-size: 3vw;
+  margin-top: -1vw;
+  color: white;
+}

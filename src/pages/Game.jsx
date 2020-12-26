@@ -4,8 +4,13 @@ import {useAppState} from "../AppState.jsx"
 import SnakeMap from "./SnakeMap.jsx"
 import SnakeFood from "./snakeFood.jsx"
 import { gameInterval } from "./GameInterval.jsx"
+import Modal from "react-modal"
 
+Modal.setAppElement('#root')
 const Game = (props) => {
+
+    // Game Over modal
+    const [modalOpen, setModalOpen] = React.useState(false)
 
     // pass in appState so I can update highscore for the user's profile
     const { state } = useAppState()
@@ -48,10 +53,6 @@ const Game = (props) => {
         setScoreState(0)
     }
 
-    // endGame function to be called when end game button is clicked
-    const endGame = () => {
-        setSpeedState(null)
-    }
 
     const updateScore = () => {
       fetch(url + "/profiles/" + profile.id, {
@@ -102,6 +103,7 @@ const Game = (props) => {
         // Check if snake runs into its own body
         for (let i =0;i<snakeStateCopy.length;i++){
           if (newHead[0] == snakeStateCopy[i][0] & newHead[1] == snakeStateCopy[i][1]){
+              setModalOpen(true)
               setSpeedState(null)
               updateScore()
           } 
@@ -145,19 +147,21 @@ const Game = (props) => {
 
   return (
     <div className="App">
+      <Modal isOpen={modalOpen} onRequestClose={()=> setModalOpen(false)} style={{overlay:{backgroundColor:"red", opacity:"0.97"},content:{top:"40%",left:"25%",height:"10vw",width:"50%",color:"black"}}}>
+       <h2>Game Over!</h2>
+       <h3>{scoreState > profile.highScore ? <h3>New High Score: {scoreState}</h3> : <h3>Your Score: {scoreState}</h3> }</h3>
+       <button onClick={()=>setModalOpen(false)}>Close</button>
+      </Modal>
     <div style={{"height":"600px", "width":"80%", "margin-left":"auto", "margin-right":"auto", "margin-top":"1.2vw"}} role="button" tabIndex="0" onKeyDown = {event => arrowKeyListeners(event)}>
     <div style={{"height":"3.5vw","display":"flex", "justifyContent":"flex-start", "margin-bottom":"1vw","margin-top":"2.4vw", "alignItems":"center"}}>
       <h1 style={{"font-size":"4vw", "color":"red", "margin-right":"28.5%"}}>Score: {scoreState}</h1>
       <button className="gameButton" onClick={startGame}>Start Game</button>
-      {/* <button onClick={endGame}>End Game</button> */}
     </div>
-      <div className="gameBoard" style={{"height":"480px", "width":"480px", "border":"2px solid black", "margin-left":"auto", "margin-right":"auto", "position": "relative"}} role="button" tabIndex="0" onKeyDown = {event => arrowKeyListeners(event)} >
+      <div className="gameBoard" style={{"height":"480px", "width":"480px", "border":"3px solid red", "margin-left":"auto", "margin-right":"auto", "position": "relative"}} role="button" tabIndex="0" onKeyDown = {event => arrowKeyListeners(event)} >
         <SnakeMap snakeSquares = {snakeState}/>
         <SnakeFood foodSquare = {foodState}/>
       </div>
-    </div>
-    
-    
+    </div> 
    </div>
   );
 }

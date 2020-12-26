@@ -12,8 +12,8 @@ import {useAppState} from "../AppState.jsx"
 
 
 
-
 export const App = (props) => {
+
 
   const {state, dispatch} = useAppState()
 
@@ -40,7 +40,6 @@ export const App = (props) => {
     <Route path="/dashboard" component={Dashboard}/>
     <Route path="/game" component={Game}/>
     <Route path="/leaderboard" component={Leaderboard}/>
-    
   </Switch>
   </>)
 };
