@@ -133,6 +133,7 @@ const Game = (props) => {
         
         // if the snake goes off of the game board then end the game and update the profile highscore and user highscore if necessary
         if (snakeStateCopy[0][0] > 96 || snakeStateCopy[0][1] > 96 || snakeStateCopy[0][0] < 0 || snakeStateCopy[0][1] < 0){
+          setModalOpen(true)
           setSpeedState(null)
           if (scoreState > profile.highScore){
             updateScore()
