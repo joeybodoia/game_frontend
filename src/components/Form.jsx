@@ -52,11 +52,11 @@ const Form = (props) => {
 
     return(
         <div className="form">
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
-                <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
-                <input type="text" name="profilePicture" value={formData.profilePicture} onChange={handleChange} />
-                <input type="submit" value={action}/>
+            <form className="formContainer" onSubmit={handleSubmit}>
+                <input className="formInput" type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First Name"/>
+                <input className="formInput" type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Last Name" />
+                <input className="formInput" type="text" name="profilePicture" value={formData.profilePicture} onChange={handleChange} placeholder="profile picture (image address)" />
+                <input className="formButton" type="submit" value={action}/>
             </form>
         </div>
     )

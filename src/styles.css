@@ -128,7 +128,7 @@ Auth styling
 .profile {
   border:5px solid #B08AAB;
   border-radius: 10px;
-  height: 37vw;
+  height: 39vw;
   margin-top: 4vw;
   width: 35vw;
   display: flex;
@@ -161,20 +161,21 @@ Auth styling
    font-family: 'Kaushan Script', cursive;
  }
 
- .buttonContainer {
+ /* .buttonContainer {
     height: 2.5vw;
     width: 23vw;
     display: flex;
     justify-content: space-between;
-}
+} */
 
 .buttonContainer button {
   font-size: 1vw;
   width: 8vw;
   border: 2px solid red;
-  border-radius: 10px;
+  border-radius: 5px;
   color: rgb(255,250,250);
   background-color: black;
+  font-family: 'Kaushan Script', cursive;
 }
 
 .welcomePage {
@@ -256,6 +257,11 @@ blockquote.speech {
 
 .gameBoard {
   background-color:lightgray;
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.nicepng.com%2Fpng%2Fdetail%2F18-188583_sharingan-sealing-technique-sasuke-curse-mark-seal.png&f=1&nofb=1");
+  /* background-size: cover; */
+  opacity: 0.70;
+  background-size: 180% 100%;
+  background-position: 50% 50%;
 }
 
 .leaderboardContainer {
@@ -284,4 +290,84 @@ blockquote.speech {
   color: black;
   font-size: 2.1vw;
   letter-spacing: 2px;
+}
+
+
+.createProfile {
+  border: 5px solid #B08AAB;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 1.3vw;
+  border-radius: 10px;
+  margin-top: 8vw;
+  margin-left:auto;
+  margin-right:auto;
+  height: 27vw;
+  width:60%;
+  color: black;
+  text-shadow: 1px 1px red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgray;
+}
+
+.createProfile button {
+  font-size: 1.3vw;
+  width: 10vw;
+  font-family: 'Kaushan Script', cursive;
+  border: 2px solid red;
+  border-radius: 6px;
+  color: rgb(255,250,250);
+  background-color: black;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 0.7vw 0.7vw 0;
+  display: inline-block;
+  padding: 0.8vw;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.form {
+  width: 100%;
+  margin-top: 2vw;
+}
+
+.formContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.formInput {
+  background-color: black;
+  border-radius: 5px;
+  border: 3px solid #B08AAB;
+  height: 2vw;
+  width: 28%;
+  color: rgb(255,250,250);
+  font-family: 'Kaushan Script', cursive;
+}
+
+
+.formButton {
+  border: 3px solid black;
+  border-radius: 5px;
+  background-color:#B08AAB;
+  color: rgb(255,250,250);
+}
+
+
+.gameButton {
+  border: 3px solid black;
+  border-radius: 5px;
+  background-color:#B08AAB;
+  color: rgb(255,250,250);
+  font-family: 'Kaushan Script', cursive;
+  font-size: 1.3vw;
 }

@@ -63,7 +63,10 @@ const Dashboard = (props) => {
 
     const newProfile = () => {
        return(
-            <div>
+            <div className="createProfile">
+                <h1>Create a profile in order to access the game</h1>
+                <p><i class="arrow down"></i></p>
+                <p><i class="arrow down"></i></p>
                 <Link to="/dashboard/new"><button>Create Profile</button></Link>
                 <Route path="/dashboard/:action" render={(rp) => <Form {...rp} getProfile={getProfile}/>}/>
     

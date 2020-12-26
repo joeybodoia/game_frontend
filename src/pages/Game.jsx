@@ -53,6 +53,29 @@ const Game = (props) => {
         setSpeedState(null)
     }
 
+    const updateScore = () => {
+      fetch(url + "/profiles/" + profile.id, {
+        method: "put",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "bearer " + token
+        },
+        body: JSON.stringify({
+            highScore: scoreState
+        }),
+      }).then((response) => response.json())
+      fetch(url + "/users/" + user_id, {
+        method: "put",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "bearer " + token
+        },
+        body: JSON.stringify({
+            highscore: scoreState
+        }),
+    }).then((response) => response.json())
+    }
+
     // function to prevent the arrow keys from changing the browser viewpoint
     window.addEventListener("keydown", function(e) {
       // space and arrow keys
@@ -80,6 +103,7 @@ const Game = (props) => {
         for (let i =0;i<snakeStateCopy.length;i++){
           if (newHead[0] == snakeStateCopy[i][0] & newHead[1] == snakeStateCopy[i][1]){
               setSpeedState(null)
+              updateScore()
           } 
         }
 
@@ -108,26 +132,7 @@ const Game = (props) => {
         if (snakeStateCopy[0][0] > 96 || snakeStateCopy[0][1] > 96 || snakeStateCopy[0][0] < 0 || snakeStateCopy[0][1] < 0){
           setSpeedState(null)
           if (scoreState > profile.highScore){
-            fetch(url + "/profiles/" + profile.id, {
-              method: "put",
-              headers: {
-                  "Content-Type": "application/json",
-                  Authorization: "bearer " + token
-              },
-              body: JSON.stringify({
-                  highScore: scoreState
-              }),
-            }).then((response) => response.json())
-            fetch(url + "/users/" + user_id, {
-              method: "put",
-              headers: {
-                  "Content-Type": "application/json",
-                  Authorization: "bearer " + token
-              },
-              body: JSON.stringify({
-                  highscore: scoreState
-              }),
-          }).then((response) => response.json())
+            updateScore()
         }
         }
         
@@ -140,11 +145,11 @@ const Game = (props) => {
 
   return (
     <div className="App">
-    <div style={{"height":"600px", "width":"700px", "border":"2px solid white", "margin-left":"auto", "margin-right":"auto"}} role="button" tabIndex="0" onKeyDown = {event => arrowKeyListeners(event)}>
-    <div style={{"height":"3.5vw","display":"flex", "justifyContent":"space-around", "border":"2px solid white", "margin-bottom":"1vw", "alignItems":"center"}}>
-      <h1 style={{"font-size":"2vw", "color":"red"}}>Score: {scoreState}</h1>
-      <button onClick={startGame}>Start Game</button>
-      <button onClick={endGame}>End Game</button>
+    <div style={{"height":"600px", "width":"80%", "margin-left":"auto", "margin-right":"auto", "margin-top":"1.2vw"}} role="button" tabIndex="0" onKeyDown = {event => arrowKeyListeners(event)}>
+    <div style={{"height":"3.5vw","display":"flex", "justifyContent":"flex-start", "margin-bottom":"1vw","margin-top":"2.4vw", "alignItems":"center"}}>
+      <h1 style={{"font-size":"4vw", "color":"red", "margin-right":"28.5%"}}>Score: {scoreState}</h1>
+      <button className="gameButton" onClick={startGame}>Start Game</button>
+      {/* <button onClick={endGame}>End Game</button> */}
     </div>
       <div className="gameBoard" style={{"height":"480px", "width":"480px", "border":"2px solid black", "margin-left":"auto", "margin-right":"auto", "position": "relative"}} role="button" tabIndex="0" onKeyDown = {event => arrowKeyListeners(event)} >
         <SnakeMap snakeSquares = {snakeState}/>
