@@ -30,18 +30,12 @@ const Dashboard = (props) => {
         console.log(state.profile)
         return(
         <div className="dashboard">
-        <h1 style={{textAlign:"center"}}>{username}'s Profile</h1>
-        {/* <ul>
-            {state.profile.map((pro) => (
-                <div>
-                    <h2>{pro.firstName}</h2>
-                    <h2>{pro.lastName}</h2>
-                    <img src={pro.profilePicture}></img>
-                </div>
-        ))}
-        </ul> */}
+        {/* <h1 style={{textAlign:"center"}}>{username}'s Profile</h1> */}
         <div className="profile">
-            <img className="profilePic" src={profile.profilePicture} ></img>
+            <div className="imageContainer">
+                <h1 style={{"font-size":"3vw", "font-family": "'Kaushan Script'", "margin-top":"-0.4vw"}}>{username}'s Profile</h1>
+                <img className="profilePic" src={profile.profilePicture} ></img>
+            </div>
             <div className="nameContainer">
                 <h2>First Name: {profile.firstName}</h2>
                 <h2>Last Name: {profile.lastName}</h2>
@@ -51,7 +45,7 @@ const Dashboard = (props) => {
                 <button onClick={()=> {
                     dispatch({type: "select", payload: profile})
                     props.history.push("/dashboard/edit")
-                }}>Edit Profile</button>
+                }}>Edit</button>
                 <button onClick={()=> {
                     fetch(url + "/profiles/" + profile.id, {
                         method: "delete",
@@ -60,7 +54,7 @@ const Dashboard = (props) => {
                         }
                     })
                     .then(() => getProfile())
-                }}>Delete Profile</button>
+                }}>Delete</button>
                 <Route path="/dashboard/:action" render={(rp) => <Form {...rp} getProfile={getProfile}/>}/>
             </div>
         </div>
