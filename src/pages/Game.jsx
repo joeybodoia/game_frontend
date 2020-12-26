@@ -1,10 +1,11 @@
-
 import React from "react"
 import {useAppState} from "../AppState.jsx"
 import SnakeMap from "./SnakeMap.jsx"
 import SnakeFood from "./snakeFood.jsx"
 import { gameInterval } from "./GameInterval.jsx"
 import Modal from "react-modal"
+import {Link} from "react-router-dom"
+
 
 Modal.setAppElement('#root')
 const Game = (props) => {
@@ -147,10 +148,15 @@ const Game = (props) => {
 
   return (
     <div className="App">
-      <Modal isOpen={modalOpen} onRequestClose={()=> setModalOpen(false)} style={{overlay:{backgroundColor:"red", opacity:"0.97"},content:{top:"40%",left:"25%",height:"10vw",width:"50%",color:"black"}}}>
-       <h2>Game Over!</h2>
-       <h3>{scoreState > profile.highScore ? <h3>New High Score: {scoreState}</h3> : <h3>Your Score: {scoreState}</h3> }</h3>
-       <button onClick={()=>setModalOpen(false)}>Close</button>
+      <Modal isOpen={modalOpen} onRequestClose={()=> setModalOpen(false)} style={{overlay:{backgroundColor:"red", opacity:"0.99"},content:{top:"35%",left:"25%",height:"18vw",width:"50%", "border":"3px solid black", "background-color":"lightgray"}}}>
+       <h2 style={{"text-align":"center", color: "red", "font-size":"4vw", "text-shadow": "1.3px 1.3px black", "font-family": "'Kaushan Script', cursive"}}>Game Over!</h2>
+       <h3>{scoreState > profile.highScore ? <h3 style={{"text-align":"center", "font-size":"2vw", "font-family": "'Kaushan Script', cursive"}}>New High Score: {scoreState}</h3> : <h3 style={{"text-align":"center", "font-size":"2vw", "font-family": "'Kaushan Script', cursive"}}>Your Score: {scoreState}</h3> }</h3>
+       <div>
+        <Link to="/dashboard"><button>Go to profile</button></Link>
+        <Link to="/leaderboard"><button>Go to leaderboard</button></Link>
+        <button onClick={() => window.location.reload(false)}>Play Again!</button>
+        {/* <button style={{"margin-left":"auto","margin-right":"center"}} onClick={()=>setModalOpen(false)}>Play Again</button> */}
+       </div>
       </Modal>
     <div style={{"height":"600px", "width":"80%", "margin-left":"auto", "margin-right":"auto", "margin-top":"1.2vw"}} role="button" tabIndex="0" onKeyDown = {event => arrowKeyListeners(event)}>
     <div style={{"height":"3.5vw","display":"flex", "justifyContent":"flex-start", "margin-bottom":"1vw","margin-top":"2.4vw", "alignItems":"center"}}>
